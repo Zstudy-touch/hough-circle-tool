@@ -1,0 +1,10 @@
+schema: spec-driven
+
+context: |
+  Language: Simplified Chinese
+  All artifacts must be written in Simplified Chinese.
+  Keep OpenSpec structural headings and SHALL/MUST keywords in English.
+
+  项目：基于 OpenCV HoughCircles 的霍夫圆检测桌面小工具。
+  源码在 src/hough_tool/（detector / annotate / gui / cli），启动入口 run.py，测试在 tests/。
+  两张验收样例图在 examples/，标注结果图在 docs/results/，验收参数必须与 README 一致。
