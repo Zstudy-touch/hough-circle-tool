@@ -15,6 +15,23 @@ CIRCLE_COLOR = (0, 255, 0)
 CENTER_COLOR = (0, 0, 255)
 
 
+def _label_origin(circle: Circle, width: int, height: int) -> tuple[int, int]:
+    """挑选半径文字的画点，避免被图片边缘裁掉。
+
+    优先放在圆上方，其次圆下方；两者都超出画布时（大圆贴近上下边），
+    退到圆心下方一点，宁可压在图案上也不让数字缺一半。
+    """
+    text_h = 22  # 0.6 字号的实际文字高度，留一点余量
+    x = min(max(circle.x - 30, 4), max(width - 64, 4))
+    above = circle.y - circle.r - 8
+    below = circle.y + circle.r + 22
+    if above >= text_h:
+        return x, above
+    if below <= height - 6:
+        return x, below
+    return x, min(circle.y + 34, height - 8)
+
+
 def annotate(
     image: np.ndarray,
     circles: list[Circle],
@@ -23,6 +40,7 @@ def annotate(
 ) -> np.ndarray:
     """返回画好圆的结果副本，不修改传入的原图。"""
     canvas = image.copy()
+    height, width = canvas.shape[:2]
     for circle in circles:
         cv2.circle(canvas, (circle.x, circle.y), circle.r, color, thickness)
         # 画一个十字标记圆心，方便核对圆心是否落在目标中心
@@ -38,7 +56,7 @@ def annotate(
         cv2.putText(
             canvas,
             f"r={circle.r}",
-            (circle.x - 30, circle.y - circle.r - 8 if circle.y - circle.r - 8 > 12 else circle.y + circle.r + 20),
+            _label_origin(circle, width, height),
             cv2.FONT_HERSHEY_SIMPLEX,
             0.6,
             color,
