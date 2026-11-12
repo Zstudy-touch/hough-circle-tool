@@ -23,10 +23,10 @@ APP_TITLE = "霍夫圆检测工具"
 # 两张验收样例图的参数：界面上一键套用，README 里也按这两个口径记录
 PRESETS = {
     "硬币（coins.jpg）": dict(
-        dp=1.2, min_dist=200, param1=120, param2=40, min_radius=140, max_radius=175
+        dp=1.2, min_dist=200, param1=120, param2=40, min_radius=160, max_radius=200
     ),
     "盘子（cookie-plate.jpg）": dict(
-        dp=1.2, min_dist=200, param1=120, param2=40, min_radius=200, max_radius=280
+        dp=1.2, min_dist=200, param1=120, param2=30, min_radius=220, max_radius=270
     ),
 }
 

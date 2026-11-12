@@ -22,8 +22,8 @@ COINS_IMAGE = ROOT / "examples" / "coins.jpg"
 PLATE_IMAGE = ROOT / "examples" / "cookie-plate.jpg"
 
 # 与 README「验收参数」一节保持一致；改这里就要同步改文档和预期结果
-COINS_PARAMS = CircleParams(min_dist=200, param1=120, param2=40, min_radius=140, max_radius=175)
-PLATE_PARAMS = CircleParams(min_dist=200, param1=120, param2=40, min_radius=200, max_radius=280)
+COINS_PARAMS = CircleParams(min_dist=200, param1=120, param2=40, min_radius=160, max_radius=200)
+PLATE_PARAMS = CircleParams(min_dist=200, param1=120, param2=30, min_radius=220, max_radius=270)
 
 
 class CoinsAcceptanceTest(unittest.TestCase):
@@ -37,10 +37,11 @@ class CoinsAcceptanceTest(unittest.TestCase):
     def test_finds_exactly_two_circles(self) -> None:
         self.assertEqual(2, len(self.circles), f"实际检出：{self.circles}")
 
-    def test_radius_matches_coin_size(self) -> None:
+    def test_radius_matches_coin_outer_edge(self) -> None:
+        # 半径区间要覆盖硬币外缘（约 179/180）；上限设太小会锁到币面内圈上
         for circle in self.circles:
-            self.assertGreaterEqual(circle.r, 140)
-            self.assertLessEqual(circle.r, 175)
+            self.assertGreaterEqual(circle.r, 170)
+            self.assertLessEqual(circle.r, 190)
 
     def test_two_circles_are_located_left_and_right(self) -> None:
         # 两枚硬币左右分布，圆心横向距离应明显大于半径，避免检出同一个圆两次
@@ -62,8 +63,8 @@ class PlateAcceptanceTest(unittest.TestCase):
 
     def test_radius_covers_the_plate_rim(self) -> None:
         circle = self.circles[0]
-        self.assertGreaterEqual(circle.r, 200)
-        self.assertLessEqual(circle.r, 280)
+        self.assertGreaterEqual(circle.r, 230)
+        self.assertLessEqual(circle.r, 255)
 
     def test_center_is_near_image_center(self) -> None:
         height, width = self.image.shape[:2]
