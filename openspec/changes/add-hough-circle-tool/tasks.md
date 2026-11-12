@@ -12,7 +12,7 @@
 
 ## 3. 图形界面
 
-- [x] 3.1 实现 tkinter 界面：导入图片、六个参数滑块、实时预览、导出标注图、两套预设；用脚本构造窗口并套用预设，确认硬币 2 个圆（r=165、160）、盘子 1 个圆（r=232）
+- [x] 3.1 实现 tkinter 界面：导入图片、六个参数滑块、实时预览、导出标注图、两套预设；用脚本构造窗口并套用预设，确认硬币 2 个圆（r=179、180）、盘子 1 个圆（r=243）
 - [x] 3.2 处理非法参数与坏图片路径：滑块初值取自 `CircleParams` 默认值，检测失败时状态栏提示而不是抛异常；重新构造窗口确认无 traceback
 
 ## 4. 命令行与文档
@@ -23,7 +23,7 @@
 ## 5. 验收
 
 - [x] 5.1 运行 `python -m unittest discover -s tests -v`，9 条用例全部通过（含两张样例图的数量、半径、圆心位置断言）
-- [x] 5.2 生成 `docs/results/coins-annotated.png` 与 `docs/results/cookie-plate-annotated.png`，逐张核对：硬币图两个圆贴合外缘，盘子图一个圆贴合盘沿
+- [x] 5.2 生成 `docs/results/coins-annotated.png` 与 `docs/results/cookie-plate-annotated.png`，逐张核对：硬币图两个圆贴合外缘（齿轮边），盘子图一个圆贴合盘沿；放大四角复核后修正了首版「硬币锁内圈、盘子圆心偏左上」的偏差
 - [x] 5.3 运行 `openspec validate add-hough-circle-tool --strict`，确认变更记录合法
 
 ## Workflow follow-up

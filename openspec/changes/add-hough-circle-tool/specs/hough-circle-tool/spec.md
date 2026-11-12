@@ -64,16 +64,16 @@
 
 ### Requirement: 两张样例图的验收结果
 
-工具 MUST 能按文档记录的参数在两张样例图上得到指定结果：`coins.jpg` 检出 2 个圆且半径落在 140–175 像素；`cookie-plate.jpg` 检出 1 个圆且半径落在 200–280 像素。
+工具 MUST 能按文档记录的参数在两张样例图上得到指定结果：`coins.jpg` 检出 2 个圆且半径落在 170–190 像素；`cookie-plate.jpg` 检出 1 个圆且半径落在 230–255 像素。
 
 #### Scenario: 硬币图标出两个外缘
 
-- **WHEN** 以 `dp=1.2`、`minDist=200`、`param1=120`、`param2=40`、半径 140–175 检测 `examples/coins.jpg`
+- **WHEN** 以 `dp=1.2`、`minDist=200`、`param1=120`、`param2=40`、半径 160–200 检测 `examples/coins.jpg`
 - **THEN** 恰好检出 2 个圆，左右分布且分别贴合两枚硬币外缘
 
 #### Scenario: 盘子图标出一个盘沿
 
-- **WHEN** 以 `dp=1.2`、`minDist=200`、`param1=120`、`param2=40`、半径 200–280 检测 `examples/cookie-plate.jpg`
+- **WHEN** 以 `dp=1.2`、`minDist=200`、`param1=120`、`param2=30`、半径 220–270 检测 `examples/cookie-plate.jpg`
 - **THEN** 恰好检出 1 个圆，圆心接近图片中心并贴合盘沿
 
 ### Requirement: README 记录启动方式与验收参数

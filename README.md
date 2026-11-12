@@ -51,8 +51,8 @@ PYTHONPATH=src python -m hough_tool
 
 | 图片 | dp | minDist | param1 | param2 | minRadius | maxRadius | 检出结果 |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| `examples/coins.jpg` | 1.2 | 200 | 120 | 40 | 140 | 175 | 2 个圆：r=165、r=160，分别贴合两枚硬币外缘 |
-| `examples/cookie-plate.jpg` | 1.2 | 200 | 120 | 40 | 200 | 280 | 1 个圆：r=232，贴合盘沿 |
+| `examples/coins.jpg` | 1.2 | 200 | 120 | 40 | 160 | 200 | 2 个圆：r=179、r=180，分别贴合两枚硬币外缘 |
+| `examples/cookie-plate.jpg` | 1.2 | 200 | 120 | 30 | 220 | 270 | 1 个圆：r=243，贴合盘沿 |
 
 ### coins.jpg —— 标出两个硬币外缘
 
@@ -69,11 +69,11 @@ PYTHONPATH=src python -m hough_tool
 ```bash
 # 复现硬币图结果
 PYTHONPATH=src python -m hough_tool.cli --image examples/coins.jpg \
-    --out out/coins.png --min-dist 200 --param1 120 --param2 40 --min-radius 140 --max-radius 175
+    --out out/coins.png --min-dist 200 --param1 120 --param2 40 --min-radius 160 --max-radius 200
 
 # 复现盘子图结果
 PYTHONPATH=src python -m hough_tool.cli --image examples/cookie-plate.jpg \
-    --out out/plate.png --min-dist 200 --param1 120 --param2 40 --min-radius 200 --max-radius 280
+    --out out/plate.png --min-dist 200 --param1 120 --param2 30 --min-radius 220 --max-radius 270
 
 # 只输出 JSON，便于脚本断言
 PYTHONPATH=src python -m hough_tool.cli --image examples/coins.jpg --json
