@@ -103,6 +103,13 @@ openspec validate add-hough-circle-tool --strict   # Change 'add-hough-circle-to
 openspec list                                      # 4/4 任务完成
 ```
 
+## 交接状态与接手
+
+本分支用于交接当前工作：图片检测功能已完成并按下文参数验收；**「导入视频完成检测」仅作为后续规划，本分支不含任何视频实现**。
+
+- **复现验收**：克隆本分支后执行 `python -m unittest discover -s tests -v`（9 条用例全部通过），再按「验收参数与结果」的命令或界面预设跑两张样例图，检出数量与半径应与表中一致。
+- **当前完成状态、未验证事项与后续待办**（含视频需求的接手入口）：见 `openspec/changes/add-hough-circle-tool/tasks.md` 的「交接状态」小节。
+
 ## 项目结构
 
 ```
@@ -120,6 +127,8 @@ hough-circle-tool/
 └── openspec/                   # OpenSpec 项目与变更记录
 ```
 
-## 素材来源
+## 样例获取方式与来源
 
-`examples/` 下两张图片来自练习仓库 `Ecrypted-Data/rt-git-openspec-lab` 的 `examples/hough/`，仅用于本次培训验收。
+两张验收样例图已随仓库提交在 `examples/` 目录，克隆仓库后直接可用，无需另行下载或申请。
+
+图片来自练习仓库 `Ecrypted-Data/rt-git-openspec-lab` 的 `examples/hough/`，仅用于本次培训验收。

@@ -29,3 +29,24 @@
 ## Workflow follow-up
 
 - 评审通过后归档该变更，把 `specs/hough-circle-tool/spec.md` 合入 `openspec/specs/`。
+
+## 交接状态（2026-11-16，任务五）
+
+### 完成进度
+
+- 第 1–5 组任务全部完成（勾选见上）。
+- 2026-11-16 交接前复跑验证：`python -m unittest discover -s tests -v` 9 条用例全部通过；CLI 按 README 参数复现 `examples/coins.jpg` 检出 2 个圆（r=179、180）、`examples/cookie-plate.jpg` 检出 1 个圆（r=243），与 README「验收参数与结果」一致。
+- 本交接分支只更新文档与 OpenSpec 记录，未改动任何代码与检测参数，验收口径与上文一致。
+
+### 未验证事项
+
+- GUI 文件对话框、导出等交互路径仅做过脚本化构造与人工抽查，没有自动化回归。
+- 仅在 Windows + Python 3.13 环境实测；macOS / Linux 及其他 OpenCV 4.x 小版本未验证。
+- 大分辨率图片与极端参数组合下的耗时未测；design 中的性能结论只覆盖两张样例图的量级。
+
+### 后续待办（接手入口）
+
+- 下一步需求：**导入视频完成检测**——导入本机离线 MP4，逐帧复用 `detector.detect_circles` 与 `annotate`，输出标注视频与逐帧结果，无圆帧保留。当前未实现任何视频代码。
+- 实施入口：`src/hough_tool/detector.py`（把单帧检测整理为可复用的帧接口）、`cli.py` / `gui.py`（命令行与界面入口扩展）、新增视频读写模块；参数仍以 `CircleParams` 为单一来源，README / `gui.PRESETS` / 测试三处同步约定不变。
+- 未验证清单：视频解码、FPS 与时间戳、帧数完整性、零圆帧输出、性能与内存均未实测；两张图片的参数不能直接声称对视频通用。
+- 原有 Workflow follow-up 不变：评审通过后归档该变更。
